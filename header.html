@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UI Portfolio</title>
+    <link rel="icon" href="https://w3layouts.b-cdn.net//wp-content/uploads/2020/11/cropped-w3layouts-logo-512-180x180.png" type="image/x-icon">
+    <link rel="stylesheet" href="headerstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <!--Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="Images/svg_313515.svg" alt="Logo" class="logo-img" />
+        UI Portfolio
+    </div>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <div class="dropdown">
+          <a href="#pages" class="dropdown-toggle">Pages <div class="dropdown-menu">
+            <a href="#page1">Page 1</a>
+            <a href="#page2">Page 2</a>
+            <a href="#page3">Page 3</a>
+            <a href="#page4">Page 4</a>
+            </div> 
+            </a>
+          
+        </div>
+        <a href="#contact">Contact</a>
+        <a href="#hireme" class="btn">Hire Me</a>
+        <a href="#search" class="search-icon" id="search-icon">
+          <img src="Images/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="Search" />
+        </a>
+        <div id="search-box" class="search-box">
+  <input type="text" placeholder="Search..." />
+</div>
+        <button id="theme-switcher" class="theme-switcher">
+            <img id="theme-icon" src="Images/dark-mode-icon.png" alt="Switch Theme" />
+        </button>
+      </nav>
+    </div>
+  </header>
+<main class="Home" id="home">
+  <div class="container">
+    <div class="text-content">
+      <h1>Hi, I'm John Watson</h1>
+      <h3><span id="typed"></span></h3>
+      <p>
+        I love Graphic design and Photography and have been working on my
+        portfolio since 2016. I Can give your business a new Creative start right away!
+      </p>
+      <div class="btns">
+        <a href="#hireme" class="btn">Hire Me</a>
+        <a href="#portfolio" class="btn" id="portfolio">My Portfolio</a>
+      </div>
+    </div>
+    <div class="image-content">
+      <img src="banner.png" alt="John Watson" class="John" />
+    </div>
+  </div>
+</main>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const body = document.body;
+
+    // Image elements
+    const searchIcon = document.getElementById('search-icon');
+    const themeIcon = document.getElementById('theme-icon');
+
+    themeSwitcher.addEventListener('click', function () {
+      body.classList.toggle('light-theme'); // Toggle the light theme class
+
+      if (body.classList.contains('light-theme')) {
+        // Switch to light theme images
+        searchIcon.src = 'Images/search-light.png';
+        themeIcon.src = 'Images/light-mode-icon.png';
+      } else {
+        // Switch to dark theme images
+        searchIcon.src = 'Images/search-dark.png';
+        themeIcon.src = 'Images/dark-mode-icon.png';
+      }
+    });
+
+    // Typing effect logic
+    const typedText = ["Web Designer", "Web Developer", "Photographer", "Freelancer"];
+    const typedElement = document.getElementById("typed");
+    let currentIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+    const targetText = typedText[currentIndex];
+
+    // Add characters
+    if (charIndex <= targetText.length) {
+      typedElement.textContent = targetText.substring(0, charIndex++);
+    }
+
+    // Determine typing speed
+    let typingSpeed = 150;
+
+    // If the word is fully typed
+    if (charIndex === targetText.length + 1) {
+      typingSpeed = 1000; // Pause before switching to the next word
+      setTimeout(() => {
+        // Clear the text and move to the next word without blinking
+        charIndex = 0;
+        currentIndex = (currentIndex + 1) % typedText.length; // Move to the next word
+        type(); // Restart typing for the next word
+      }, typingSpeed);
+      return;
+    }
+
+    setTimeout(type, typingSpeed);
+  }
+
+  type(); // Start the typing effect
+
+    // Search bar functionality
+    const searchBox = document.getElementById('search-box');
+
+    searchIcon.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
+      searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close the search box when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!searchBox.contains(event.target) && event.target !== searchIcon) {
+        searchBox.style.display = 'none';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
